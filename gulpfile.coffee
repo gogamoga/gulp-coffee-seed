@@ -29,7 +29,7 @@ gulp.task 'lint-tests', ->
     .pipe(plugins.coffeelint.reporter())
 
 # Compile coffee sources
-gulp.task 'compile', ['lint'] ->
+gulp.task 'compile', ['lint'], ->
   gulp.src(['./src/**/*.coffee', '!./src/test', '!./src/templates'])
     .pipe(cache('compiling'))
     .pipe(plugins.coffee(bare: true).on 'error', plugins.util.log)
@@ -49,7 +49,7 @@ gulp.task 'templates', ->
     .pipe gulp.dest 'dist'
 
 # Run mocha tests
-gulp.task 'test', ['compile-tests'] ->
+gulp.task 'test', ['compile-tests'], ->
   return gulp.src(['./test/test-*.js'], read: false)
     .pipe(cache('testing'))
     .pipe plugins.mocha
@@ -80,5 +80,5 @@ gulp.task 'server', ['watch'], (cb) ->
     cb()
 
 # Default gulp task
-gulp.task 'default', ['clean', 'compile', 'compile-tests', 'templates', 'test'] -> true
+gulp.task 'default', ['clean', 'compile', 'compile-tests', 'templates', 'test'], -> true
 
