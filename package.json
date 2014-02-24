@@ -33,6 +33,7 @@
         "gulp-mocha": "",
         "gulp-clean": "",
         "gulp-cached":"",
+        "should":"",
         "coffee-script": "latest",
         "coffeelint": "~1.1.0",
         "coffeelint-stylish": "latest",
