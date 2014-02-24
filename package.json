@@ -7,7 +7,7 @@
         "test": "gulp tests",
         "compile": "gulp compile",
         "lint": "gulp lint",
-        "start": "gulp server",
+        "start": "gulp server"
     },
     "repository": {
         "type": "git",
