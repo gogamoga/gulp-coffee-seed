@@ -64,8 +64,10 @@ gulp.task 'watch', ->
   gulp.watch './src/test/*.coffee', ['test']
 
 # Start Dev Server
-gulp.task 'start', ['default', 'watch'], (cb) ->
-  dev = connect().use(connect.logger 'dev').use(connect.static 'dist')
+gulp.task 'start', ['clean', 'test', 'watch'], (cb) ->
+  dev = connect()
+    .use(connect.logger 'dev')
+    .use('/', connect.static 'dist')
   server = http.createServer(dev).listen 1337
 
   server.on 'error', (error) ->
