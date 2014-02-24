@@ -28,7 +28,7 @@
         "gulp-load-plugins":"",
         "gulp-coffee": "",
         "gulp-cache":"",
-        "gulp-coffeelint",
+        "gulp-coffeelint":"",
         "gulp-util": "",
         "gulp-mocha": "",
         "gulp-clean": "",
