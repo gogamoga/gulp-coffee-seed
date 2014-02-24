@@ -23,7 +23,7 @@
     "readmeFilename": "README.md",
     "gitHead": "af499a1e99d5897ae465a4b8dc8d338c2289ab9f",
     "devDependencies": {
-        "connect": "~3.0",
+        "connect": "",
         "gulp": "~3.5.2",
         "gulp-coffee": "",
         "gulp-util": "",
