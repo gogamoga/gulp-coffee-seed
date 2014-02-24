@@ -1,0 +1,24 @@
+{
+  "name": "gulp-coffee-seed",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gogamoga/gulp-coffee-seed",
+  "authors": [
+    "gogamoga <gogamoga@gmail.com>"
+  ],
+  "description": "Seed project scaffold for gulp and coffee development",
+  "main": "dist/index.js",
+  "keywords": [
+    "gulp",
+    "coffee",
+    "gogamatic"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
