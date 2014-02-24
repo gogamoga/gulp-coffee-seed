@@ -44,8 +44,11 @@
       <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="19" selection-start="813" selection-end="813" vertical-scroll-proportion="0.63139933" vertical-offset="413" max-vertical-offset="1242">
-              <folding />
+            <state line="30" column="26" selection-start="845" selection-end="845" vertical-scroll-proportion="0.6774744" vertical-offset="413" max-vertical-offset="1269">
+              <folding>
+                <marker date="1393266802956" expanded="true" signature="0:865" placeholder="{&quot;name&quot;: &quot;gulp-coffee-seed&quot;...}" />
+                <marker date="1393266802956" expanded="true" signature="684:865" placeholder="{&quot;connect&quot;: &quot;&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -332,8 +335,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="19" selection-start="813" selection-end="813" vertical-scroll-proportion="0.63139933" vertical-offset="413" max-vertical-offset="1242">
-          <folding />
+        <state line="30" column="26" selection-start="845" selection-end="845" vertical-scroll-proportion="0.6774744" vertical-offset="413" max-vertical-offset="1269">
+          <folding>
+            <marker date="1393266802956" expanded="true" signature="0:865" placeholder="{&quot;name&quot;: &quot;gulp-coffee-seed&quot;...}" />
+            <marker date="1393266802956" expanded="true" signature="684:865" placeholder="{&quot;connect&quot;: &quot;&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
