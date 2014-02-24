@@ -11,47 +11,47 @@ connect = require 'connect'
 
 # Clean dist and test
 gulp.task 'clean', ->
-  gulp.src('./dist', read: false).pipe clean force: true
-  gulp.src('./test', read: false).pipe clean force: true
+  gulp.src('./dist', read: false).pipe plugins.clean force: true
+  gulp.src('./test', read: false).pipe plugins.clean force: true
 
 # Lint the coffee sources
 gulp.task 'lint', ->
   gulp.src(['./src/**/*.coffee', '!./src/tests', '!./src/templates'])
-    .pipe(cache('linting'))
+    .pipe(plugins.cache('linting'))
     .pipe(plugins.coffeelint())
     .pipe(plugins.coffeelint.reporter())
 
 # Lint the coffee test-sources
 gulp.task 'lint-tests', ->
   gulp.src('./src/test/**/*.coffee')
-    .pipe(cache('linting-tests'))
+    .pipe(plugins.cache('linting-tests'))
     .pipe(plugins.coffeelint())
     .pipe(plugins.coffeelint.reporter())
 
 # Compile coffee sources
 gulp.task 'compile', ['lint'], ->
   gulp.src(['./src/**/*.coffee', '!./src/test', '!./src/templates'])
-    .pipe(cache('compiling'))
+    .pipe(plugins.cache('compiling'))
     .pipe(plugins.coffee(bare: true).on 'error', plugins.util.log)
     .pipe(gulp.dest 'dist')
 
 # Compile coffee test-sources
 gulp.task 'compile-tests', ['lint-tests'], ->
   gulp.src('./src/test/*.coffee')
-    .pipe(cache('compiling-tests'))
+    .pipe(plugins.cache('compiling-tests'))
     .pipe(plugins.coffee(bare: true).on 'error', plugins.util.log)
     .pipe(gulp.dest 'test')
 
 # Copy templates
 gulp.task 'templates', ->
   gulp.src(['./src/templates/**/*.*'])
-    .pipe(cache('templating'))
+    .pipe(plugins.cache('templating'))
     .pipe gulp.dest 'dist'
 
 # Run mocha tests
 gulp.task 'test', ['compile-tests'], ->
   return gulp.src(['./test/test-*.js'], read: false)
-    .pipe(cache('testing'))
+    .pipe(plugins.cache('testing'))
     .pipe plugins.mocha
       reporter: 'spec'
       globals:
