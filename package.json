@@ -4,10 +4,10 @@
     "description": "Seed project scaffold for gulp and coffee development",
     "main": "build/main.js",
     "scripts": {
-        "test": "gulp tests",
-        "compile": "gulp compile",
-        "lint": "gulp lint",
-        "start": "gulp server"
+        "test": "gulp test",
+        "compile": "gulp compile compile-tests",
+        "lint": "gulp lint lint-tests",
+        "start": "gulp start"
     },
     "repository": {
         "type": "git",
@@ -34,6 +34,7 @@
         "gulp-clean": "",
         "gulp-cached":"",
         "should":"",
+        "http":"",
         "coffee-script": "latest",
         "coffeelint": "~1.1.0",
         "coffeelint-stylish": "latest",

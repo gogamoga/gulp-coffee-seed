@@ -17,41 +17,41 @@ gulp.task 'clean', ->
 # Lint the coffee sources
 gulp.task 'lint', ->
   gulp.src(['./src/**/*.coffee', '!./src/tests', '!./src/templates'])
-    .pipe(plugins.cache('linting'))
+    .pipe(plugins.cached('linting'))
     .pipe(plugins.coffeelint())
     .pipe(plugins.coffeelint.reporter())
 
 # Lint the coffee test-sources
 gulp.task 'lint-tests', ->
   gulp.src('./src/test/**/*.coffee')
-    .pipe(plugins.cache('linting-tests'))
+    .pipe(plugins.cached('linting-tests'))
     .pipe(plugins.coffeelint())
     .pipe(plugins.coffeelint.reporter())
 
 # Compile coffee sources
 gulp.task 'compile', ['lint'], ->
   gulp.src(['./src/**/*.coffee', '!./src/test', '!./src/templates'])
-    .pipe(plugins.cache('compiling'))
+    .pipe(plugins.cached('compiling'))
     .pipe(plugins.coffee(bare: true).on 'error', plugins.util.log)
     .pipe(gulp.dest 'dist')
 
 # Compile coffee test-sources
 gulp.task 'compile-tests', ['lint-tests'], ->
   gulp.src('./src/test/*.coffee')
-    .pipe(plugins.cache('compiling-tests'))
+    .pipe(plugins.cached('compiling-tests'))
     .pipe(plugins.coffee(bare: true).on 'error', plugins.util.log)
     .pipe(gulp.dest 'test')
 
 # Copy templates
 gulp.task 'templates', ->
   gulp.src(['./src/templates/**/*.*'])
-    .pipe(plugins.cache('templating'))
+    .pipe(plugins.cached('templating'))
     .pipe gulp.dest 'dist'
 
 # Run mocha tests
-gulp.task 'test', ['compile-tests'], ->
+gulp.task 'test', ['templates', 'compile', 'compile-tests'], ->
   return gulp.src(['./test/test-*.js'], read: false)
-    .pipe(plugins.cache('testing'))
+    .pipe(plugins.cached('testing'))
     .pipe plugins.mocha
       reporter: 'spec'
       globals:
@@ -60,12 +60,13 @@ gulp.task 'test', ['compile-tests'], ->
 # Watch for the changes
 gulp.task 'watch', ->
   gulp.watch ['./src/**/*.coffee', '!./src/test', '!./src/templates'], ['compile']
-  gulp.watch './src/templates/**/*/*', ['template']
+  gulp.watch './src/templates/**/*.*', ['templates']
+  gulp.watch './src/test/*.coffee', ['test']
 
 # Start Dev Server
-gulp.task 'server', ['watch'], (cb) ->
+gulp.task 'start', ['default', 'watch'], (cb) ->
   dev = connect().use(connect.logger 'dev').use(connect.static 'dist')
-  server = http.createSever(dev).listen 1337
+  server = http.createServer(dev).listen 1337
 
   server.on 'error', (error) ->
     log colors.underline "#{colors.red 'ERROR'} Failed to start server!"
@@ -74,11 +75,11 @@ gulp.task 'server', ['watch'], (cb) ->
   server.on 'listening', ->
     addr = server.address()
     host = if addr.address is '0.0.0.0' then 'localhost' else addr.address
-    url = "http://#{host}:#{addr.port}/index.html}"
+    url = "http://#{host}:#{addr.port}/index.html"
     log ''
     log "Server started at #{colors.magenta url}\n"
     cb()
 
 # Default gulp task
-gulp.task 'default', ['clean', 'compile', 'compile-tests', 'templates', 'test'], -> true
+gulp.task 'default', ['clean', 'test' ], -> true
 
